@@ -35,3 +35,28 @@ struct TIL20210805 {
 
 TIL20210805()
 
+extension CGPoint: CustomStringConvertible {
+    public var description: String {
+        return "Custom desciption : (\(x), \(y))"
+    }
+}
+
+struct TIL20210806 {
+    init() {
+        let a = CGPoint(x: 10, y: 12)
+        let b = CGPoint(x: 111, y: 78)
+        print(a)
+        print(b)
+        
+        let v = UIScrollView()
+        v.backgroundColor = .red
+        if #available(iOS 11.0, *) {
+            // TODO : 자세히 공부 해야 함
+            v.contentInsetAdjustmentBehavior = .never
+        }
+        v.showsVerticalScrollIndicator = false
+    }
+}
+
+TIL20210806()
+
