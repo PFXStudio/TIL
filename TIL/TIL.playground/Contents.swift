@@ -60,3 +60,36 @@ struct TIL20210806 {
 
 TIL20210806()
 
+struct SpeedOptions: OptionSet {
+    let rawValue: Int
+
+    static let verySlow = Self(rawValue: 1 << 0)
+    static let slow = Self(rawValue: 1 << 1)
+    static let normal = Self(rawValue: 1 << 2)
+    static let fast = Self(rawValue: 1 << 3)
+    static let veryFast = Self(rawValue: 1 << 4)
+
+    static let fastes: Self = [.fast, .veryFast]
+    static let all: Self = [.verySlow, .slow, .normal, .fast, .veryFast]
+    static var check: Self = [.verySlow, .slow]
+}
+
+struct TIL20210813 {
+    init() {
+        print(SpeedOptions.all)
+        SpeedOptions.fastes.contains(.slow)
+        SpeedOptions.fastes.contains(.veryFast)
+
+        var options = [SpeedOptions.verySlow]
+        options.append(.veryFast)
+        // 교집합을 찾아 낸다.
+        var replaced = SpeedOptions.check.update(with: .slow)
+        print(replaced == .slow)
+
+        replaced = SpeedOptions.check.update(with: .fast)
+        print(replaced ?? "is nil")
+    }
+}
+
+TIL20210813()
+
